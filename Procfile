@@ -1,1 +1,1 @@
-web: java -jar utils/webapp-runner*.jar build/libs/tomcat-heroku-plaground.war
+web:    java $JAVA_OPTS -jar target/dependency/webapp-runner*.jar --port $PORT build/libs/*.war
