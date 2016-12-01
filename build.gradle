@@ -1,0 +1,33 @@
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'war'
+
+webAppDirName = 'web'
+
+configurations {
+    cli
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use 'jcenter' for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    mavenCentral()
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    testCompile 'junit:junit:4.12'
+    cli 'com.github.jsimone:webapp-runner:8.0.33.4'
+}
+
+task stage(type: Copy, dependsOn: ['war']){
+    into 'utils'
+    from(configurations.cli)
+}
+
+task wrapper(type: Wrapper){
+  gradleVersion = '3.2.1'
+}
