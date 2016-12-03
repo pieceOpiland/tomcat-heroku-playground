@@ -15,7 +15,6 @@ public class HibernateInit implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         Configuration config = new Configuration();
-        System.out.println(System.getenv("JDBC_DATABASE_URL"));
         config.setProperty("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
         try {
             hibernateSessionFactory = config.configure().buildSessionFactory();
