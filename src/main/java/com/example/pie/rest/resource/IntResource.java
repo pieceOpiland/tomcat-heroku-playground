@@ -1,4 +1,4 @@
-package com.example.pie.rest;
+package com.example.pie.rest.resource;
 
 import com.example.pie.model.MyInt;
 

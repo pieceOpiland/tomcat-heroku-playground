@@ -20,8 +20,9 @@
             });
 
             $button.on("click", function() {
-                var value = parseInt($input.val(), 10);
-                if(!isNaN(value)) {
+//                var value = parseInt($input.val(), 10);
+                var value = $input.val();
+//                if(!isNaN(value)) {
                     $.ajax({
                         url: "rest/int",
                         method: "POST",
@@ -31,8 +32,10 @@
                         $target.html("Value: " + value);
                         $input.val("");
                         $input.focus();
+                    }).fail(function(){
+                        alert("Please enter a reasonably sized number.");
                     });
-                }
+//                }
             });
         });
     </script>

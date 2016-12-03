@@ -11,6 +11,11 @@
         on github and deploys on heroku. It uses gradle as a build tool.
     </description>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error.jsp</location>
+    </error-page>
+
     <context-param>
         <param-name>theValue</param-name>
         <param-value>I have a value!</param-value>
