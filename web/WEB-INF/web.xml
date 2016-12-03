@@ -21,6 +21,10 @@
         <param-value>I have a value!</param-value>
     </context-param>
 
+    <listener>
+        <listener-class>com.example.pie.persistance.HibernateInit</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>jersey</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
