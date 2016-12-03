@@ -1,0 +1,23 @@
+{
+  "name": "tomcat-heroku-playground",
+  "version": "1.0.0",
+  "description": "Nothing to see here.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pieceOpiland/tomcat-heroku-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pieceOpiland/tomcat-heroku-playground/issues"
+  },
+  "homepage": "https://github.com/pieceOpiland/tomcat-heroku-playground#readme",
+  "dependencies": {
+    "bower": "^1.8.0"
+  }
+}

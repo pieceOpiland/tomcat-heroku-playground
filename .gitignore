@@ -2,10 +2,9 @@ build
 .gradle
 .idea
 out
-*.iml
-*.ipr
-*.iws
 .DS_Store
 utils
 classes
 target
+node_modules
+web/libs

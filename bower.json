@@ -1,0 +1,19 @@
+{
+  "name": "tomcat-heroku-playground",
+  "description": "Nothing to see here.",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/pieceOpiland/tomcat-heroku-playground",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
