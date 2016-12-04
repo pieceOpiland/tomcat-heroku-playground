@@ -10,8 +10,7 @@ public class MyInt {
 
     @JsonIgnore
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "myint_id_seq")
-    @SequenceGenerator(name = "myint_id_seq", sequenceName = "myint_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
