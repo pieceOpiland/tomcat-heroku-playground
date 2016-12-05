@@ -21,9 +21,9 @@ public class TodoItem {
 
     @JsonIgnore
     @Column(name = "visible")
-    private boolean visible;
+    private boolean visible = true;
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void complete() {
+        this.done = true;
     }
 }

@@ -69,7 +69,7 @@ public class TodoResource {
         Session session = HibernateInit.getSession();
         Transaction txn = session.beginTransaction();
         TodoItem theItem = session.find(TodoItem.class, id);
-        theItem.setDone(true);
+        theItem.complete();
         session.update(theItem);
         txn.commit();
         return theItem;
