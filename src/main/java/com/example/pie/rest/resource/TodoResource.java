@@ -5,10 +5,9 @@ import com.example.pie.persistance.HibernateInit;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.ws.rs.*;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -23,8 +22,11 @@ public class TodoResource {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TodoItem> query = builder.createQuery(TodoItem.class);
         Root<TodoItem> item = query.from(TodoItem.class);
-        query.select(item);
-        query.orderBy(builder.asc(item.get("id")));
+
+        query.select(item)
+                .where(builder.equal(item.get("visible"), true))
+                .orderBy(builder.asc(item.get("id")));
+
         List result = session.createQuery(query).getResultList();
         txn.commit();
         return result;
@@ -39,6 +41,24 @@ public class TodoResource {
         session.save(newItem);
         txn.commit();
         return newItem;
+    }
+
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List clearDoneItems(){
+        Session session = HibernateInit.getSession();
+        Transaction txn = session.beginTransaction();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaUpdate<TodoItem> query = builder.createCriteriaUpdate(TodoItem.class);
+        Root<TodoItem> item = query.from(TodoItem.class);
+
+        query.where(builder.equal(item.get("done"), true))
+                .set(item.get("visible"), false);
+
+        session.createQuery(query).executeUpdate();
+        txn.commit();
+        return getItems();
     }
 
     @Path("/{id}")

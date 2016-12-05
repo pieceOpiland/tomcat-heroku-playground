@@ -53,6 +53,16 @@ define(function(require){
         });
     };
 
+    var clearList = function(){
+        return $.ajax({
+            url: "/rest/todo",
+            method: "DELETE"
+        }).then(function(data){
+            $list.html("");
+            renderItems(data);
+        });
+    };
+
     var renderInto = function($el){
         $el.append($list);
         return populateList();
@@ -60,6 +70,7 @@ define(function(require){
 
     return {
         renderInto: renderInto,
-        addItem: addItem
+        addItem: addItem,
+        clearList: clearList
     }
 });

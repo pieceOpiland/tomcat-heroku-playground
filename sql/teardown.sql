@@ -1,1 +1,2 @@
 DROP TABLE IF EXISTS myint;
+DROP TABLE IF EXISTS todo_item;

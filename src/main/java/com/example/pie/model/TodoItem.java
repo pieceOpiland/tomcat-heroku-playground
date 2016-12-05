@@ -1,5 +1,7 @@
 package com.example.pie.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,33 +14,16 @@ public class TodoItem {
     private Integer id;
 
     @Column(name = "is_done")
-    private Boolean done;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Boolean getDone() {
-        return done;
-    }
-
-    public void setDone(Boolean done) {
-        this.done = done;
-    }
-
-    public String getTask() {
-        return task;
-    }
-
-    public void setTask(String task) {
-        this.task = task;
-    }
+    private boolean done;
 
     @Column(name = "task")
-
     private String task;
+
+    @JsonIgnore
+    @Column(name = "visible")
+    private boolean visible;
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 }

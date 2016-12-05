@@ -7,5 +7,6 @@ CREATE TABLE todo_item (
   id        SERIAL PRIMARY KEY,
   is_done   BOOLEAN,
   task      VARCHAR(256),
+  visible   BOOLEAN DEFAULT TRUE,
   created   TIMESTAMP DEFAULT now()
 );
