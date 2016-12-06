@@ -15,7 +15,7 @@ public class JacksonProvider implements ContextResolver<ObjectMapper> {
         mapper = new ObjectMapper();
 
         // Serializes private fields without getters, for better or for worse.
-        mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        // mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
 
     @Override
