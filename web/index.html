@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tomcat on Heroku</title>
-    <link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
 
+    <!-- build:css dist/styles.min.css -->
+    <link rel="stylesheet" type="text/less" href="less/styles.less" />
+    <script type="text/javascript" src="libs/less/dist/less.min.js"></script>
+    <!-- /build -->
+
+    <!-- build:js dist/main.min.js -->
     <script src="libs/requirejs/require.js"></script>
     <script src="scripts/config.js"></script>
     <script src="scripts/main.js"></script>
+    <!-- /build -->
 </head>
 <body><nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">

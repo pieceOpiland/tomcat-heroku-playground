@@ -16,6 +16,8 @@
   "dependencies": {
     "jquery": "^3.1.1",
     "requirejs": "^2.3.2",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "less": "^2.7.1",
+    "almond": "^0.3.3"
   }
 }
