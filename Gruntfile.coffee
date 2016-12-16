@@ -43,6 +43,15 @@ module.exports = (grunt) ->
         options:
           compress: false
 
+    htmlmin:
+      options:
+        removeComments: true
+        collapseWhitespace: true
+
+      prod:
+        files:
+          'dist/index.html': 'dist/index.html'
+
     processhtml:
       main:
         files: {'dist/index.html': ['dist/index.html']}
@@ -51,8 +60,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-less'
+  grunt.loadNpmTasks 'grunt-contrib-htmlmin'
 
   grunt.loadNpmTasks 'grunt-processhtml'
 
-  grunt.registerTask 'production', ['clean:main', 'copy', 'requirejs:prod', 'less:prod', 'processhtml', 'clean:dist']
+  grunt.registerTask 'production', ['clean:main', 'copy', 'requirejs:prod', 'less:prod', 'processhtml', 'htmlmin:prod', 'clean:dist']
   grunt.registerTask 'dev', ['clean:main', 'copy', 'requirejs:dev', 'less:dev']
