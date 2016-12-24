@@ -9,6 +9,7 @@ import javax.persistence.criteria.*;
 import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import java.util.Date;
 import java.util.List;
 
 @Path("todo")
@@ -16,7 +17,10 @@ public class TodoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List getItems() {
+    // It'd be nice to go ahead and have date here.
+    // Jackson claims to support it: http://wiki.fasterxml.com/JacksonFAQDateHandling
+    public List getItems(@QueryParam("ts")long epoch) {
+        Date timestamp = new Date(epoch);
         Session session = HibernateInit.getSession();
         Transaction txn = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -24,7 +28,9 @@ public class TodoResource {
         Root<TodoItem> item = query.from(TodoItem.class);
 
         query.select(item)
-                .where(builder.equal(item.get("visible"), true))
+                .where(builder.and(
+                        builder.equal(item.get("visible"), true)),
+                        builder.greaterThan(item.get("timestamp"), timestamp))
                 .orderBy(builder.asc(item.get("id")));
 
         List result = session.createQuery(query).getResultList();
@@ -58,7 +64,7 @@ public class TodoResource {
 
         session.createQuery(query).executeUpdate();
         txn.commit();
-        return getItems();
+        return getItems(0);
     }
 
     @Path("/{id}")

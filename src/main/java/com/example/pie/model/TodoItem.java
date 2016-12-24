@@ -1,8 +1,11 @@
 package com.example.pie.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "todo_item")
@@ -18,6 +21,12 @@ public class TodoItem {
 
     @Column(name = "task")
     private String task;
+
+    @JsonIgnore
+    @Column(name = "created",
+            insertable = false,
+            updatable = false)
+    private Date timestamp;
 
     @JsonIgnore
     @Column(name = "visible")
