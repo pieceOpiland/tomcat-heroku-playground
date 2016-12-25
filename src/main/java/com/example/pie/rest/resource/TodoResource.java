@@ -49,6 +49,19 @@ public class TodoResource {
         return newItem;
     }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<TodoItem> makeItems(List<TodoItem> newItems){
+        Session session = HibernateInit.getSession();
+        Transaction txn = session.beginTransaction();
+        for(TodoItem newItem : newItems) {
+            session.save(newItem);
+        }
+        txn.commit();
+        return newItems;
+    }
+
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
