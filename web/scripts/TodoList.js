@@ -44,12 +44,12 @@ define(function(require){
             url: "/rest/todo",
             method: "POST",
             contentType: "application/json",
-            data: JSON.stringify({
+            data: JSON.stringify([{
                 task: text,
                 done: false
-            })
+            }])
         }).then(function(data){
-            renderItem(data);
+            renderItems(data);
         });
     };
 
