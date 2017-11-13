@@ -22,7 +22,7 @@
     </context-param>
 
     <listener>
-        <listener-class>com.example.pie.persistance.HibernateInit</listener-class>
+        <listener-class>com.example.pie.listeners.ContextListener</listener-class>
     </listener>
 
     <servlet>

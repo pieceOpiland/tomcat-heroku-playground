@@ -1,7 +1,7 @@
 package com.example.pie.rest.resource;
 
 import com.example.pie.model.MyInt;
-import com.example.pie.persistance.HibernateInit;
+import com.example.pie.persistance.PersistenceManager;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,7 +14,7 @@ public class IntResource {
     }
 
     public void setValue(MyInt newValue) {
-        Session sesh = HibernateInit.getSession();
+        Session sesh = PersistenceManager.getInstance().getSession();
         Transaction txn = sesh.beginTransaction();
         sesh.save(newValue);
         txn.commit();

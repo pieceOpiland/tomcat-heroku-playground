@@ -1,7 +1,7 @@
 package com.example.pie.rest.resource;
 
 import com.example.pie.model.TodoItem;
-import com.example.pie.persistance.HibernateInit;
+import com.example.pie.persistance.PersistenceManager;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -21,7 +21,7 @@ public class TodoResource {
     // Jackson claims to support it: http://wiki.fasterxml.com/JacksonFAQDateHandling
     public List getItems(@QueryParam("ts")long epoch) {
         Date timestamp = new Date(epoch);
-        Session session = HibernateInit.getSession();
+        Session session = PersistenceManager.getInstance().getSession();
         Transaction txn = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<TodoItem> query = builder.createQuery(TodoItem.class);
@@ -41,8 +41,8 @@ public class TodoResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<TodoItem> makeItem(List<TodoItem> newItems){
-         Session session = HibernateInit.getSession();
+    public List makeItem(List<TodoItem> newItems){
+         Session session = PersistenceManager.getInstance().getSession();
          Transaction txn = session.beginTransaction();
          for(TodoItem newItem : newItems) {
              session.save(newItem);
@@ -55,7 +55,7 @@ public class TodoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List clearDoneItems(){
-        Session session = HibernateInit.getSession();
+        Session session = PersistenceManager.getInstance().getSession();
         Transaction txn = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaUpdate<TodoItem> query = builder.createCriteriaUpdate(TodoItem.class);
@@ -74,7 +74,7 @@ public class TodoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public TodoItem updateItem(@PathParam("id") Integer id){
-        Session session = HibernateInit.getSession();
+        Session session = PersistenceManager.getInstance().getSession();
         Transaction txn = session.beginTransaction();
         TodoItem theItem = session.find(TodoItem.class, id);
         theItem.complete();
