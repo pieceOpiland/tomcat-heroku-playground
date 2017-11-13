@@ -14,6 +14,6 @@ public class TodoResourceTest {
 
     @Test
     public void testGetTodoItems() {
-        assertEquals(0, new TodoResource().getItems(0).size());
+        assertEquals(1, new TodoResource().getItems(0).size());
     }
 }
